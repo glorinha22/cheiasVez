@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Atenuação especial </title>
+<style type="text/css">
+<!--
+body {
+	background-color: #33CC33;
+}
+.style1 {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+-->
+</style></head>
+<body>
+<p align="center"><span class="style1">Atenua&ccedil;&atilde;o especial 
+  </span></p>
+<form name="form1">
+  <table width="288" border="1" align="center">
+    <tr>
+      <td colspan="5" bgcolor="#0099FF"><div align="center">Pris&atilde;o</div></td>
+    </tr>
+    <tr>
+      <td width="52" rowspan="3"><strong>M&aacute;ximo</strong></td>
+      <td width="42">Anos</td>
+      <td width="54"><label>
+        <input type="text" name="anoprismax" size="8" />
+      </label></td>
+      <td width="22" rowspan="3"><strong>2/3</strong></td>
+      <td width="84"><input type="text" name="anoprismax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Meses</td>
+      <td><input type="text" name="mesprismax" size="8" /></td>
+      <td><input type="text" name="mesprismax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Dias</td>
+      <td><input type="text" name="diasprismax" size="8" /></td>
+      <td><input type="text" name="diasprismax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><strong>M&iacute;nimo</strong></td>
+      <td>Anos</td>
+      <td><input type="text" name="anoprismin" size="8" /></td>
+      <td rowspan="3"><strong>4/5</strong></td>
+      <td><input type="text" name="anoprismin1_5" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Meses</td>
+      <td><input type="text" name="mesprismin" size="8" /></td>
+      <td><input type="text" name="mesprismin1_5" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Dias</td>
+      <td><input type="text" name="diasprismin" size="8" /></td>
+      <td><input type="text" name="diasprismin1_5" size="8" /></td>
+    </tr>
+    <tr>
+      <td colspan="5"><div align="center">
+        <input type="button" name="btncalc" value="CALCULAR" onclick="calc_total_pris()">
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="5" bgcolor="#CCFF00"><div align="center">Multa</div></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><strong>M&aacute;ximo</strong></td>
+      <td>Anos</td>
+      <td><input type="text" name="anomultamax" size="8" /></td>
+      <td rowspan="3"><strong>2/3</strong></td>
+      <td><input type="text" name="anomultamax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Meses</td>
+      <td><input type="text" name="mesmultamax" size="8" /></td>
+      <td><input type="text" name="mesmultamax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td>Dias</td>
+      <td><input type="text" name="diasmultamax" size="8" /></td>
+      <td><input type="text" name="diasmultamax1_3" size="8" /></td>
+    </tr>
+    <tr>
+      <td colspan="5"><div align="center">
+        <input type="button" name="btncalc2" value="CALCULAR" onclick="calc_total_multa()">
+      </div></td>
+    </tr>
+  </table>
+  <p><script>
+  
+  function converte_tempo_anos_finais(a,m,d,x,y)
+   { 
+var day = 24;
+var month = 730;
+var year = 8760;
+var horastotais=a*year+m*month+d*day;
+var horas_convertidos=(x/y)*horastotais;
+var anos_finais=horas_convertidos/year;
+var horas_sobram1=horas_convertidos%year;
+anos_finais=anos_finais|0;
+var meses_finais=horas_sobram1/month;
+var horas_sobram2=horas_sobram1%month;
+meses_finais=meses_finais|0;
+var dias_finais=horas_sobram2/day;
+var horas_sobram3=horas_sobram2%day;
+dias_finais=dias_finais|0;
+return anos_finais;
+    }
+	
+  function converte_tempo_meses_finais(a,m,d,x,y)
+   { 
+var day = 24;
+var month = 730;
+var year = 8760;
+var horastotais=a*year+m*month+d*day;
+var horas_convertidos=(x/y)*horastotais;
+var anos_finais=horas_convertidos/year;
+var horas_sobram1=horas_convertidos%year;
+anos_finais=anos_finais|0;
+var meses_finais=horas_sobram1/month;
+var horas_sobram2=horas_sobram1%month;
+meses_finais=meses_finais|0;
+var dias_finais=horas_sobram2/day;
+var horas_sobram3=horas_sobram2%day;
+dias_finais=dias_finais|0;
+return meses_finais;
+    }
+	
+  function converte_tempo_dias_finais(a,m,d,x,y)
+   { 
+var day = 24;
+var month = 730;
+var year = 8760;
+var horastotais=a*year+m*month+d*day;
+var horas_convertidos=(x/y)*horastotais;
+var anos_finais=horas_convertidos/year;
+var horas_sobram1=horas_convertidos%year;
+anos_finais=anos_finais|0;
+var meses_finais=horas_sobram1/month;
+var horas_sobram2=horas_sobram1%month;
+meses_finais=meses_finais|0;
+var dias_finais=horas_sobram2/day;
+var horas_sobram3=horas_sobram2%day;
+dias_finais=dias_finais|0;
+return dias_finais;
+    }
+  
+  function calc_total_pris() 
+  		{
+						var  apmax = eval(form1.anoprismax.value);
+						var  mpmax = eval(form1.mesprismax.value);
+						var  dpmax = eval(form1.diasprismax.value);
+						
+						var  apmin = eval(form1.anoprismin.value);
+						var  mpmin = eval(form1.mesprismin.value);
+						var  dpmin = eval(form1.diasprismin.value);
+//código referente a 2/3:		
+						
+						form1.anoprismax1_3.value=converte_tempo_anos_finais(apmax,mpmax,dpmax,2,3);
+						form1.mesprismax1_3.value=converte_tempo_meses_finais(apmax,mpmax,dpmax,2,3);
+						form1.diasprismax1_3.value=converte_tempo_dias_finais(apmax,mpmax,dpmax,2,3);
+//código referente a 4/5:
+
+						form1.anoprismin1_5.value=converte_tempo_anos_finais(apmin,mpmin,dpmin,4,5);
+						form1.mesprismin1_5.value=converte_tempo_meses_finais(apmin,mpmin,dpmin,4,5);
+						form1.diasprismin1_5.value=converte_tempo_dias_finais(apmin,mpmin,dpmin,4,5);
+						}
+
+function calc_total_multa() {
+
+						var  ammax = eval(form1.anomultamax.value);
+						var  mmmax = eval(form1.mesmultamax.value);
+						var  dmmax = eval(form1.diasmultamax.value);
+
+//código referente a 2/3 para a multa:
+
+						form1.anomultamax1_3.value=converte_tempo_anos_finais(ammax,mmmax,dmmax,2,3);
+						form1.mesmultamax1_3.value=converte_tempo_meses_finais(ammax,mmmax,dmmax,2,3);
+						form1.diasmultamax1_3.value=converte_tempo_dias_finais(ammax,mmmax,dmmax,2,3);
+						
+							}
+
+
+
+document.write("<p> FIM </P>");						
+						
+    </script>
+  </p>
+</form>
+
+</body>
+
+</html>
